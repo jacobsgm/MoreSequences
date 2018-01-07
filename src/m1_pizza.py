@@ -27,11 +27,11 @@ def main():
     #     4. When satisfied with your work, move onto the next test.
     # ------------------------------------------------------------------
 
-    run_test_generate_points_on_circle()
-    run_test_draw_points_on_circle()
-    run_test_pizza()
+    #run_test_generate_points_on_circle()
+    #run_test_draw_points_on_circle()
+    #run_test_pizza()
     run_test_polygon()
-    # run_test_fancy_polygon()
+    run_test_fancy_polygon()
 
 
 def run_test_generate_points_on_circle():
@@ -581,13 +581,22 @@ def fancy_polygon(window, circle, number_of_lines, hops_to_next_point, color, th
     ####################################################################
     # ------------------------------------------------------------------
 
-    i = generate_points_on_circle(circle, number_of_lines*2)
+    i = generate_points_on_circle(circle, number_of_lines)
     circle.attach_to(window)
+    window.render()
 
-    for y in range(len(i)):
+    for k in range(len(i)):
 
-        for k in range(len(i)):
-            newline = rg.Line(i[k-1], i[k+hops_to_next_point])
+        if (k+hops_to_next_point+1 > len(i)):
+            t = hops_to_next_point-len(i)+k
+            newline = rg.Line(i[k-1],i[t])
+            newline.color = color
+            newline.thickness = thickness
+            newline.attach_to(window)
+            window.render()
+
+        else:
+            newline = rg.Line(i[k-1],i[k+hops_to_next_point])
             newline.color = color
             newline.thickness = thickness
             newline.attach_to(window)
