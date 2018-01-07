@@ -146,7 +146,7 @@ def make_simple_string(m, n):
 def run_test_make_less_simple_string():
     """ Tests the   make_less_simple_string    function. """
     # ------------------------------------------------------------------
-    # TODO: 6. Implement this TEST function.
+    # DONE: 6. Implement this TEST function.
     #   It TESTS the  make_less_simple_string  function defined below.
     #   Include at least **   2   ** tests.
     #
@@ -199,13 +199,11 @@ def make_less_simple_string(m, n):
     # -----------------------------------------------------------------
 
     sequence = ''
-    for k in range(m, n+1, 1):
-
+    for k in range(m, n + 1, 1):
         if k < n:
             sequence = sequence + str(k) + '-'
-        else:
+        elif  k == n :
             sequence = sequence + str(k)
-
     return sequence
 
 
