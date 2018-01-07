@@ -567,7 +567,7 @@ def fancy_polygon(window, circle, number_of_lines, hops_to_next_point, color, th
       :type thickness:       int
     """
     # ------------------------------------------------------------------
-    # TODO: 10. Implement and test this function.
+    # DONE: 10. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     # IMPLEMENTATION REQUIREMENT:
@@ -589,16 +589,18 @@ def fancy_polygon(window, circle, number_of_lines, hops_to_next_point, color, th
 
         if (k+hops_to_next_point+1 > len(i)):
             t = hops_to_next_point-len(i)+k
-            newline = rg.Line(i[k-1],i[t])
+            newline = rg.Line(i[k-1],i[t-1])
             newline.color = color
             newline.thickness = thickness
+            newline.arrow = 'last'
             newline.attach_to(window)
             window.render()
 
         else:
-            newline = rg.Line(i[k-1],i[k+hops_to_next_point])
+            newline = rg.Line(i[k-1],i[k+hops_to_next_point-1])
             newline.color = color
             newline.thickness = thickness
+            newline.arrow = 'last'
             newline.attach_to(window)
             window.render()
 
