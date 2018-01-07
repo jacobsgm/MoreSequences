@@ -18,12 +18,12 @@ def main():
     run_test_make_less_simple_string()
 
     # ------------------------------------------------------------------
-    # TODO: 8. Uncomment the tests below before working TO DO 9.
+    # DONE: 8. Uncomment the tests below before working TO DO 9.
     #   They launch annoying rg.RoseWindows on each run that you don't want
     #   until you get to TO DO 9 and 10.
     # ------------------------------------------------------------------
-    # run_test_draw_shapes()
-    # run_test_rectangles_from_circles()
+    run_test_draw_shapes()
+    run_test_rectangles_from_circles()
 
 
 def run_test_make_simple_list():
@@ -160,13 +160,13 @@ def run_test_make_less_simple_string():
 
     # Test 1:
     expected = '1-2-3-4-5-6-7-8-9-10-11-12-13'
-    actual = make_simple_string(1, 13)
+    actual = make_less_simple_string(1, 13)
     print('Expected:', expected)
     print('Actual:  ', actual)
 
     # Test 2 (add your test here):
     expected = '6-7-8-9-10-11-12'
-    actual = make_simple_string(6, 12)
+    actual = make_less_simple_string(6, 12)
     print('Expected:', expected)
     print('Actual:  ', actual)
 
@@ -194,15 +194,16 @@ def make_less_simple_string(m, n):
       :type n: int
     """
     # ------------------------------------------------------------------
-    # TODO: 7. Implement and test this function.
+    # DONE: 7. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # -----------------------------------------------------------------
 
     sequence = ''
-    for k in range(m, n + 1, 1):
+    for k in range(m, n+1, 1):
         if k < n:
             sequence = sequence + str(k) + '-'
-        elif  k == n :
+
+        elif k == n :
             sequence = sequence + str(k)
     return sequence
 
@@ -285,7 +286,7 @@ def draw_shapes(shapes, window):
       :type window:  rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 9. Implement and test this function. Make sure you do TO DO 8 in main first!
+    # DONE: 9. Implement and test this function. Make sure you do TO DO 8 in main first!
     #     The testing code is already written for you (that you just enabled in TO DO 8).
     #
     ####################################################################
@@ -296,6 +297,9 @@ def draw_shapes(shapes, window):
     ####################################################################
     # ------------------------------------------------------------------
 
+    for k in range(len(shapes)):
+        shapes[k].attach_to(window)
+        window.render(0.3)
 
 def run_test_rectangles_from_circles():
     """ Tests the   rectangles_from_circles    function. """
@@ -408,6 +412,21 @@ def rectangles_from_circles(circles):
     ####################################################################
     # ------------------------------------------------------------------
 
+    sequence = []
+    for k in range(len(circles)):
+
+        side = circles[k].radius
+        topleftx = circles[k].center.x-side
+        bottomrightx = circles[k].center.x+side
+        toplefty = circles[k].center.y-side
+        bottomrighty = circles[k].center.y+side
+        upperleftpoint = rg.Point(topleftx,toplefty)
+        bottomrightpoint = rg.Point(bottomrightx,bottomrighty)
+        newrect = rg.Rectangle(upperleftpoint,bottomrightpoint)
+
+        sequence = sequence + [newrect]
+
+    return sequence
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
